@@ -60,7 +60,7 @@ export const orderByMedia = async (req, res, next) => {
       fileUrls,
       description
     );
-    // await sendToKapture(crmPayload); // TODO uncomment on prod
+    await sendToKapture(crmPayload);
 
     console.log(
       `Order placed successfully with ${fileUrls.length} files for user ${user_id}`
