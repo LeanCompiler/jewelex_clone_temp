@@ -7,9 +7,9 @@ APP_NAME="lead_data_collection"
 APP_DIR="/home/deploy/${APP_NAME}"
 DEPLOYMENT_PACKAGE="/home/deploy/deployment_package"
 NGINX_CONF="${APP_DIR}/nginx/default.conf"
-SSL_DIR="/etc/ssl/upload_jewelex_biz"
+SSL_DIR="/etc/ssl/upload_jewelex_biz_1"
 CERT_PATH="${SSL_DIR}/upload.jewelex.biz.fullchain.crt"
-KEY_PATH="${SSL_DIR}/upload_jewelex_biz.key"
+KEY_PATH="${SSL_DIR}/upload_jewelex_biz_1.key"
 
 # ensure persistent dirs exist
 mkdir -p "${APP_DIR}/logs" "${APP_DIR}/data/uploads"
