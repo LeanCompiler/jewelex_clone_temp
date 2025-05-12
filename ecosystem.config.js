@@ -11,7 +11,7 @@ module.exports = {
       env: {
         NODE_ENV: "production",
         PORT: 8082,
-        SERVER_BASE_URL: "http://upload.jewelex.biz",
+        SERVER_BASE_URL: "https://upload.jewelex.biz",
         KAPTURE_AUTH_TOKEN:
           "d2JmbThhb2QzNG1iZG4yc2NqdGFqN3Y0bGs0MWUxejR6dDN5am11anJ6NHVyaGV2Nzc=",
       },
