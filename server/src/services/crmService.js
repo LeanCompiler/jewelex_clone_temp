@@ -2,11 +2,11 @@ import axios from "axios";
 import { KAPTURE_URL, KAPTURE_AUTH_TOKEN } from "../config/config.js";
 
 export const sendToKapture = async (ticketData) => {
-  const userId = ticketData[0].user_id;
+  const phone = ticketData[0].phone;
   try {
     console.debug(
-      `Sending to Kapture for user ${userId}: `,
-      JSON.stringify(ticketData)
+      `Sending to Kapture for user ${phone}: `,
+      JSON.stringify(ticketData, null, 2)
     );
 
     const response = await axios.post(KAPTURE_URL, ticketData, {
@@ -20,12 +20,12 @@ export const sendToKapture = async (ticketData) => {
     }
 
     console.debug(
-      `Response from Kapture for user ${userId}: `,
-      JSON.stringify(response.data)
+      `Response from Kapture for user ${phone}: `,
+      JSON.stringify(response.data, null, 2)
     );
     return response.data;
   } catch (error) {
-    console.error(`Error sending to Kapture for user ${userId}: `, error);
+    console.error(`Error sending to Kapture for user ${phone}: `, error);
     throw error;
   }
 };

@@ -48,7 +48,7 @@ export const saveFilesToDisk = async (files, userId) => {
         break; // success
       } catch (err) {
         console.error(
-          `Write failed for file ${fileName}, attempt ${retries + 1}`,
+          `Write failed for file ${fileName}, for user ${userId}, attempt ${retries + 1}`,
           err
         );
         if (retries === MAX_WRITE_RETRIES) {

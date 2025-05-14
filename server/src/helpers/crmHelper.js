@@ -3,7 +3,7 @@ export const buildKapturePayload = (
   fileUrls = [],
   description = ""
 ) => {
-  const { user_id, email, phone } = userData;
+  const { userId, email, phone, customerCode } = userData;
 
   const ticketInfoObj = {
     type: "",
@@ -23,10 +23,10 @@ export const buildKapturePayload = (
       title: "Order", // hard-coded
       ticket_details: "",
       due_date: "",
-      customer_name: "AJP", // hard-coded
+      customer_name: customerCode,
       phone,
       email_id: email,
-      user_id,
+      user_id: userId,
       new_collections: [{ gender: "" }],
       ticket_info: [ticketInfoObj],
       webform: [{ upload_files: "", user_id: "", remarks: "" }],

@@ -5,23 +5,30 @@ import { fileNamesToUrls, validateMediaFiles } from "../helpers/orderHelper.js";
 
 export const orderByMedia = async (req, res, next) => {
   try {
-    const { user_id, email, phone, description } = req.body;
+    const {
+      user_id: userId,
+      email,
+      phone,
+      customer_code: customerCode,
+      description,
+    } = req.body;
     const files = req.files;
 
     const isDescriptionEmpty = !description?.trim();
     const isFilesEmpty = !Array.isArray(files) || files.length === 0;
-    if (!user_id || (isDescriptionEmpty && isFilesEmpty)) {
+    if (!phone || (isDescriptionEmpty && isFilesEmpty)) {
       console.error(
         `Missing required fields: ${JSON.stringify(req.body)} files:${JSON.stringify(Array.isArray(files) ? files.map((file) => file.originalname) : [])}`
       );
       return res.status(400).json({
         success: false,
-        message: "At least one of description or files is required",
+        message:
+          "Phone number and at least one of description or files is required",
       });
     }
 
     console.log(
-      `Received request for user ${user_id}: data:${JSON.stringify(req.body)} files:${JSON.stringify(
+      `Received request for user ${phone}: data:${JSON.stringify(req.body)} files:${JSON.stringify(
         Array.isArray(files) ? files.map((file) => file.originalname) : []
       )}`
     );
@@ -30,20 +37,20 @@ export const orderByMedia = async (req, res, next) => {
     if (!isFilesEmpty) {
       const isValid = await validateMediaFiles(files);
       if (!isValid) {
-        console.error("Invalid media files for user: ", user_id);
+        console.error("Invalid media files for user: ", phone);
         return res.status(400).json({
           success: false,
           message: "Invalid media files",
         });
       }
 
-      fileNames = await saveFilesToDisk(files, user_id);
+      fileNames = await saveFilesToDisk(files, phone);
       if (fileNames.length === 0) {
-        throw new Error("Failed to save files to disk for user: ", user_id);
+        throw new Error("Failed to save files to disk for user: ", phone);
       }
 
       console.log(
-        `${fileNames.length} Files saved to disk for user ${user_id}: ${fileNames.join(", ")}`
+        `${fileNames.length} Files saved to disk for user ${phone}: ${fileNames.join(", ")}`
       );
     }
 
@@ -51,24 +58,26 @@ export const orderByMedia = async (req, res, next) => {
 
     // Debug logs
     console.debug("All files uploaded.");
-    console.debug("user_id:", user_id);
+    console.debug("userId:", userId);
+    console.debug("phone:", phone);
+    console.debug("customerCode:", customerCode);
     console.debug("fileUrls:", fileUrls);
 
     // Build and send payload to Kapture
     const crmPayload = buildKapturePayload(
-      { user_id, email, phone },
+      { userId, email, phone, customerCode },
       fileUrls,
       description
     );
-    await sendToKapture(crmPayload);
+    const crmResponseData = await sendToKapture(crmPayload);
 
     console.log(
-      `Order placed successfully with ${fileUrls.length} files for user ${user_id}`
+      `Order placed successfully with ${fileUrls.length} files for user ${phone}`
     );
     return res.status(200).json({
       success: true,
-      message: `Order placed successfully with ${fileUrls.length} files for user ${user_id}`,
-      data: { crmPayload: crmPayload },
+      message: `Order placed successfully with ${fileUrls.length} files for user ${phone}`,
+      data: { crmPayload: crmPayload, crmResponseData: crmResponseData },
     });
   } catch (error) {
     console.error("Error in orderByImage:", error);
