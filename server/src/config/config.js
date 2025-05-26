@@ -4,7 +4,7 @@ dotenv.config();
 export const PORT = process.env.PORT || 8082;
 export const API_KEY = process.env.API_KEY || "";
 export const SERVER_BASE_URL =
-  process.env.SERVER_BASE_URL || `https://upload.jewelex.biz`;
+  process.env.SERVER_BASE_URL || `https://i.jewelex.biz`;
 
 export const FILE_SIZE_LIMIT_MB = parseInt(
   process.env.FILE_SIZE_LIMIT_MB || "1",

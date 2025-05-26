@@ -3,6 +3,7 @@ import express from "express";
 import appLoader from "./loaders/appLoader.js";
 import router from "./routes/index.js";
 import multer from "multer";
+import initDb from "./models/init.js";
 
 dotenv.config();
 
@@ -14,17 +15,23 @@ appLoader(app);
 
 app.use("/api", router);
 
+try {
+  await initDb();
+} catch (error) {
+  process.exit(1);
+}
+
 // TODO move these to serverRoutes.js
-app.get("/api/server-check", (req, res) => {
-  res.status(200).send("server reachable");
-});
-app.get("/api/debug-ip", (req, res) => {
-  res.json({
-    ip: req.ip,
-    ips: req.ips,
-    forwarded: req.headers["x-forwarded-for"],
-  });
-});
+// app.get("/api/server-check", (req, res) => {
+//   res.status(200).send("server reachable");
+// });
+// app.get("/api/debug-ip", (req, res) => {
+//   res.json({
+//     ip: req.ip,
+//     ips: req.ips,
+//     forwarded: req.headers["x-forwarded-for"],
+//   });
+// });
 app.use((req, res) => {
   res.status(404).send({ message: "Sorry, this page doesn't exist!" });
 });
