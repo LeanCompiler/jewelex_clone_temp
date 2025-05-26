@@ -1,8 +1,9 @@
 import { Sequelize } from "sequelize";
+import { URLS_DB_PATH } from "../config/config.js";
 
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: "/home/deploy/lead_data_collection/data/db/urls.db",
+  storage: URLS_DB_PATH,
   logging: false, // turn on for debugging
 });
 

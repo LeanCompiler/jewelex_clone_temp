@@ -1,7 +1,7 @@
 import Url from "../models/Url.js";
 import { generateShortUrl } from "../utils/urlUtils.js";
 
-export async function createUrl(url, slugLength = 5) {
+export async function createUrl(url, slugLength = 6) {
   try {
     let retries = 5;
     let createdUrl = null;

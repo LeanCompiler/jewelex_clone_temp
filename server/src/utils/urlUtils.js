@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { customAlphabet } from "nanoid";
 
 export const generateShortUrl = (longUrl, slugLength = 6) => {
   try {
@@ -28,7 +28,10 @@ export const generateShortUrl = (longUrl, slugLength = 6) => {
 
 export const generateSlug = (slugLength = 6) => {
   try {
-    const slug = nanoid(slugLength);
+    // const slug = nanoid(slugLength);
+    const ALPHABETS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const alphabetNanoid = customAlphabet(ALPHABETS, slugLength);
+    const slug = alphabetNanoid();
 
     console.debug(`Slug of size ${slugLength} generated successfully: ${slug}`);
     return slug;

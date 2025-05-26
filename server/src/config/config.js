@@ -5,6 +5,7 @@ export const PORT = process.env.PORT || 8082;
 export const API_KEY = process.env.API_KEY || "";
 export const SERVER_BASE_URL =
   process.env.SERVER_BASE_URL || `https://i.jewelex.biz`;
+export const URLS_DB_PATH = process.env.URLS_DB_PATH || "./data/urls.db";
 
 export const FILE_SIZE_LIMIT_MB = parseInt(
   process.env.FILE_SIZE_LIMIT_MB || "1",
@@ -17,9 +18,7 @@ export const MAX_FILES_LIMIT = parseInt(
 
 export const UPLOADS_NGINX_LOCATION =
   process.env.UPLOADS_NGINX_LOCATION || "/uploads";
-export const UPLOADS_WRITE_DIR =
-  process.env.UPLOADS_WRITE_DIR ||
-  "/home/deploy/lead_data_collection/data/uploads";
+export const UPLOADS_WRITE_DIR = process.env.UPLOADS_WRITE_DIR || "";
 export const MAX_WRITE_RETRIES = parseInt(
   process.env.MAX_WRITE_RETRIES || "2",
   10
