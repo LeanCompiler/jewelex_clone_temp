@@ -15,7 +15,7 @@ module.exports = {
           "9c6c341ab8caa202078bf1efbf3a443951eb9730f1697e584d17d6f7a94b26699e3a76c7d26e764a2e3c6d06e22863ce552d71f497ff6991dbbb4ef6a8d46330",
         FILE_SIZE_LIMIT_MB: 1,
         MAX_FILES_LIMIT: 10,
-        SERVER_BASE_URL: "https://i.jewelex.biz",
+        SERVER_BASE_URL: "https://upload.jewelex.biz",
         KAPTURE_URL:
           "https://jewelex.kapturecrm.com/add-ticket-from-other-source.html/v.2.0",
         KAPTURE_AUTH_TOKEN:
