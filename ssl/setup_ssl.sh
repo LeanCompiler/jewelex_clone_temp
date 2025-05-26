@@ -36,12 +36,14 @@ sudo cp "${SSL_SOURCE_DIR}/${BUNDLE_FILE}" "${SSL_TARGET_DIR}/"
 
 # Create fullchain cert
 log "Creating fullchain certificate"
-(cat "${SSL_TARGET_DIR}/${CRT_FILE}"; echo; cat "${SSL_TARGET_DIR}/${BUNDLE_FILE}") | sudo tee "${SSL_TARGET_DIR}/${FULLCHAIN_FILE}" > /dev/null
+sudo sh -c "cat '${SSL_TARGET_DIR}/${CRT_FILE}'; echo; cat '${SSL_TARGET_DIR}/${BUNDLE_FILE}'" | sudo tee "${SSL_TARGET_DIR}/${FULLCHAIN_FILE}" > /dev/null
 
 # Set correct permissions
 log "Setting permissions"
-sudo chmod 600 "${SSL_TARGET_DIR}/"*.key
-sudo chmod 644 "${SSL_TARGET_DIR}/"*.crt "${SSL_TARGET_DIR}/"*.ca-bundle
+[ -f "${SSL_TARGET_DIR}/${KEY_FILE}" ] && sudo chmod 600 "${SSL_TARGET_DIR}/${KEY_FILE}"
+[ -f "${SSL_TARGET_DIR}/${CRT_FILE}" ] && sudo chmod 644 "${SSL_TARGET_DIR}/${CRT_FILE}"
+[ -f "${SSL_TARGET_DIR}/${BUNDLE_FILE}" ] && sudo chmod 644 "${SSL_TARGET_DIR}/${BUNDLE_FILE}"
+[ -f "${SSL_TARGET_DIR}/${FULLCHAIN_FILE}" ] && sudo chmod 644 "${SSL_TARGET_DIR}/${FULLCHAIN_FILE}"
 
 # Test and reload nginx
 log "Testing NGINX configuration"
