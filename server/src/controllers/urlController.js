@@ -16,7 +16,7 @@ export const createShortUrl = async (req, res, next) => {
 
     const existing = await readUrl(null, url);
     if (existing) {
-      return res.status(400).json({
+      return res.status(200).json({
         success: false,
         message: "URL already exists",
         data: {

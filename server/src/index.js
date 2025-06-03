@@ -21,19 +21,8 @@ try {
   process.exit(1);
 }
 
-// TODO move these to serverRoutes.js
-// app.get("/api/server-check", (req, res) => {
-//   res.status(200).send("server reachable");
-// });
-// app.get("/api/debug-ip", (req, res) => {
-//   res.json({
-//     ip: req.ip,
-//     ips: req.ips,
-//     forwarded: req.headers["x-forwarded-for"],
-//   });
-// });
 app.use((req, res) => {
-  res.status(404).send({ message: "Sorry, this page doesn't exist!" });
+  res.status(404).send({ message: "Sorry, this route doesn't exist!" });
 });
 app.use((err, req, res, next) => {
   if (err instanceof multer.MulterError) {

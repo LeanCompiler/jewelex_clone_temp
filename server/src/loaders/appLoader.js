@@ -6,8 +6,8 @@ import rateLimit from "express-rate-limit";
 
 // Rate Limiter Setup
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 10,
+  windowMs: 5 * 60 * 1000,
+  max: 5000,
   keyGenerator: (req) => req.ip,
   message: "Too many requests from this IP, please try again later.",
   headers: true,
