@@ -20,7 +20,7 @@ export const buildKapturePayload = (
 
   return [
     {
-      title: "Order", // hard-coded
+      title: `Order - ${customerCode}`,
       ticket_details: "",
       due_date: "",
       customer_name: customerCode,
