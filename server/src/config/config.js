@@ -8,13 +8,10 @@ export const SERVER_BASE_URL =
 export const URLS_DB_PATH = process.env.URLS_DB_PATH || "./data/urls.db";
 
 export const FILE_SIZE_LIMIT_MB = parseInt(
-  process.env.FILE_SIZE_LIMIT_MB || "1",
+  process.env.FILE_SIZE_LIMIT_MB || "10",
   10
 );
-export const MAX_FILES_LIMIT = parseInt(
-  process.env.MAX_FILES_LIMIT || "10",
-  10
-);
+export const MAX_FILES_LIMIT = parseInt(process.env.MAX_FILES_LIMIT || "5", 10);
 
 export const UPLOADS_NGINX_LOCATION =
   process.env.UPLOADS_NGINX_LOCATION || "/uploads";

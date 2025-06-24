@@ -74,6 +74,7 @@ export const sendInteraktMessage = async (phone, ticketId) => {
       `Error sending message to Interakt for user ${phone}:`,
       error
     );
+    return null;
     // throw error;
   }
 };
