@@ -24,13 +24,13 @@ export const sendToKapture = async (ticketData) => {
       throw new Error("Failed to send to Kapture");
     }
 
-    await sendInteraktMessage(phone, response.data?.ticket_id);
+    const result = await sendInteraktMessage(phone, response.data?.ticket_id);
 
     console.debug(
       `Response from Kapture for user ${phone}: `,
       JSON.stringify(response.data, null, 2)
     );
-    return response.data;
+    return { crmResponseData: response.data, interaktResponseData: result };
   } catch (error) {
     console.error(`Error sending to Kapture for user ${phone}: `, error);
     throw error;

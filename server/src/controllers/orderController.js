@@ -69,7 +69,8 @@ export const orderByMedia = async (req, res, next) => {
       fileUrls,
       description
     );
-    const crmResponseData = await sendToKapture(crmPayload);
+    const { crmResponseData, interaktResponseData } =
+      await sendToKapture(crmPayload);
 
     console.log(
       `Order placed successfully with ${fileUrls.length} files for user ${phone}`
@@ -77,7 +78,11 @@ export const orderByMedia = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: `Order placed successfully with ${fileUrls.length} files for user ${phone}`,
-      data: { crmPayload: crmPayload, crmResponseData: crmResponseData },
+      data: {
+        crmPayload: crmPayload,
+        crmResponseData: crmResponseData,
+        interaktResponseData: interaktResponseData,
+      },
     });
   } catch (error) {
     console.error("Error in orderByImage:", error);
