@@ -39,3 +39,5 @@ export const KAPTURE_URL =
   process.env.KAPTURE_URL ||
   "https://jewelex.kapturecrm.com/add-ticket-from-other-source.html/v.2.0";
 export const KAPTURE_AUTH_TOKEN = process.env.KAPTURE_AUTH_TOKEN || "";
+export const INTERAKT_URL = process.env.INTERAKT_URL || "";
+export const INTERAKT_AUTH_TOKEN = process.env.INTERAKT_AUTH_TOKEN || "";

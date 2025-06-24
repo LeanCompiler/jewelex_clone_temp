@@ -22,6 +22,9 @@ module.exports = {
           "https://jewelex.kapturecrm.com/add-ticket-from-other-source.html/v.2.0",
         KAPTURE_AUTH_TOKEN:
           "d2JmbThhb2QzNG1iZG4yc2NqdGFqN3Y0bGs0MWUxejR6dDN5am11anJ6NHVyaGV2Nzc=",
+        INTERAKT_URL: "https://api.interakt.ai/v1/public/message/",
+        INTERAKT_AUTH_TOKEN:
+          "TTNsNlFUWnZlZm1sNzFBeWZ3cGxJSWhaTU9KWktHX0VZSzZZMjMzdWlwbzo=",
       },
       error_file: "/home/deploy/lead_data_collection/logs/app-err.log",
       out_file: "/home/deploy/lead_data_collection/logs/app-out.log",
