@@ -38,3 +38,5 @@ export const KAPTURE_URL =
 export const KAPTURE_AUTH_TOKEN = process.env.KAPTURE_AUTH_TOKEN || "";
 export const INTERAKT_URL = process.env.INTERAKT_URL || "";
 export const INTERAKT_AUTH_TOKEN = process.env.INTERAKT_AUTH_TOKEN || "";
+
+export const ADMIN_KEY = process.env.ADMIN_KEY || "";

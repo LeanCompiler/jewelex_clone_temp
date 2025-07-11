@@ -57,11 +57,11 @@ export const orderByMedia = async (req, res, next) => {
     const fileUrls = fileNamesToUrls(fileNames);
 
     // Debug logs
-    console.debug("All files uploaded.");
-    console.debug("userId:", userId);
-    console.debug("phone:", phone);
-    console.debug("customerCode:", customerCode);
-    console.debug("fileUrls:", fileUrls);
+    // console.debug("All files uploaded.");
+    // console.debug("userId:", userId);
+    // console.debug("phone:", phone);
+    // console.debug("customerCode:", customerCode);
+    // console.debug("fileUrls:", fileUrls);
 
     // Build and send payload to Kapture
     const crmPayload = buildKapturePayload(

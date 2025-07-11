@@ -59,12 +59,30 @@ export const readUrl = async (shortUrl, longUrl) => {
       order: [["created_at", "DESC"]],
     });
 
-    console.debug(
-      `URL found for criteria ${JSON.stringify(where, null, 2)}: ${JSON.stringify(result?.dataValues, null, 2)}`
-    );
+    // console.debug(
+    //   `URL found for criteria ${JSON.stringify(where, null, 2)}: ${JSON.stringify(result?.dataValues, null, 2)}`
+    // );
     return result;
   } catch (error) {
     console.error("Error in readUrl:", error);
+    throw error;
+  }
+};
+
+export const getAllUrls = async (limit = 10, offset = 0) => {
+  try {
+    const result = await Url.findAndCountAll({
+      limit: limit,
+      offset: offset,
+      order: [["created_at", "DESC"]],
+    });
+
+    return {
+      count: result.count,
+      rows: result.rows,
+    };
+  } catch (error) {
+    console.error("Error in getAllUrls:", error);
     throw error;
   }
 };

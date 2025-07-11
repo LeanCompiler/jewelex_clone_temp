@@ -25,6 +25,8 @@ module.exports = {
         INTERAKT_URL: "https://api.interakt.ai/v1/public/message/",
         INTERAKT_AUTH_TOKEN:
           "TTNsNlFUWnZlZm1sNzFBeWZ3cGxJSWhaTU9KWktHX0VZSzZZMjMzdWlwbzo=",
+        ADMIN_KEY:
+          "c98ac4eb30b66f16a3aa387bba296725c69652091b70d02a5e68252a24793e1c1d992da05a289ce266f3672fc1737b81da20376de465b7adee094991abb1ddb1",
       },
       error_file: "/home/deploy/lead_data_collection/logs/app-err.log",
       out_file: "/home/deploy/lead_data_collection/logs/app-out.log",

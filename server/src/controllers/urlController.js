@@ -1,4 +1,5 @@
-import { createUrl, readUrl } from "../services/urlService.js";
+import { ADMIN_KEY } from "../config/config.js";
+import { createUrl, getAllUrls, readUrl } from "../services/urlService.js";
 
 export const createShortUrl = async (req, res, next) => {
   try {
@@ -74,7 +75,7 @@ export const getUrl = async (req, res, next) => {
       return res.status(404).json({ success: false, message: "URL not found" });
     }
 
-    console.debug(`URL found: ${JSON.stringify(found, null, 2)}`);
+    console.debug(`URL found: ${JSON.stringify(found.dataValues, null, 2)}`);
     return res.status(200).json({
       success: true,
       message: "URL found",
@@ -86,6 +87,26 @@ export const getUrl = async (req, res, next) => {
     });
   } catch (error) {
     console.error("Error in getUrl:", error);
+    next(error);
+  }
+};
+
+export const getUrls = async (req, res, next) => {
+  try {
+    const { admin_key: adminKey, limit = 10, offset = 0 } = req.query;
+    if (!adminKey || adminKey !== ADMIN_KEY) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    const urls = await getAllUrls(limit, offset);
+
+    return res.status(200).json({
+      success: true,
+      message: "URLs found",
+      data: urls,
+    });
+  } catch (error) {
+    console.error("Error in getUrls:", error);
     next(error);
   }
 };

@@ -9,10 +9,10 @@ import {
 export const sendToKapture = async (ticketData) => {
   const phone = ticketData[0].phone;
   try {
-    console.debug(
-      `Sending to Kapture for user ${phone}: `,
-      JSON.stringify(ticketData, null, 2)
-    );
+    // console.debug(
+    //   `Sending to Kapture for user ${phone}: `,
+    //   JSON.stringify(ticketData, null, 2)
+    // );
 
     const response = await axios.post(KAPTURE_URL, ticketData, {
       headers: {
@@ -26,10 +26,11 @@ export const sendToKapture = async (ticketData) => {
 
     const result = await sendInteraktMessage(phone, response.data?.ticket_id);
 
-    console.debug(
-      `Response from Kapture for user ${phone}: `,
-      JSON.stringify(response.data, null, 2)
-    );
+    // console.debug(
+    //   `Response from Kapture for user ${phone}: `,
+    //   JSON.stringify(response.data, null, 2)
+    // );
+    console.log(`Successfully sent to Kapture for user ${phone}`);
     return { crmResponseData: response.data, interaktResponseData: result };
   } catch (error) {
     console.error(`Error sending to Kapture for user ${phone}: `, error);
@@ -52,10 +53,10 @@ export const sendInteraktMessage = async (phone, ticketId) => {
   };
 
   try {
-    console.debug(
-      `Sending to Interakt for user ${phone}:`,
-      JSON.stringify(payload, null, 2)
-    );
+    // console.debug(
+    //   `Sending to Interakt for user ${phone}:`,
+    //   JSON.stringify(payload, null, 2)
+    // );
 
     const response = await axios.post(INTERAKT_URL, payload, {
       headers: {
@@ -64,10 +65,11 @@ export const sendInteraktMessage = async (phone, ticketId) => {
       },
     });
 
-    console.debug(
-      `Response from Interakt for user ${phone}:`,
-      JSON.stringify(response.data, null, 2)
-    );
+    // console.debug(
+    //   `Response from Interakt for user ${phone}:`,
+    //   JSON.stringify(response.data, null, 2)
+    // );
+    console.log(`Successfully sent to Interakt for user ${phone}`);
     return response.data;
   } catch (error) {
     console.error(
