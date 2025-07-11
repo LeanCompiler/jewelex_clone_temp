@@ -5,6 +5,6 @@ const router = Router();
 
 router.post("/", createShortUrl);
 router.get("/", getUrl);
-router.post("/", getUrls);
+router.get("/all", getUrls);
 
 export default router;
